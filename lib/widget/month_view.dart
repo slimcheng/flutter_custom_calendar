@@ -55,7 +55,8 @@ class _MonthViewState extends State<MonthView>
       });
     }
 
-    lineCount = DateUtil.getMonthViewLineCount(widget.year, widget.month, widget.configuration.offset);
+    lineCount = DateUtil.getMonthViewLineCount(
+        widget.year, widget.month, widget.configuration.offset);
 
     //第一帧后,添加监听，generation发生变化后，需要刷新整个日历
     WidgetsBinding.instance.addPostFrameCallback((callback) {
@@ -163,13 +164,13 @@ class ItemContainerState extends State<ItemContainer> {
     dateModel = widget.dateModel;
     isSelected = ValueNotifier(dateModel.isSelected);
 
-//    先注释掉这段代码
-//    WidgetsBinding.instance.addPostFrameCallback((callback) {
-//      if (configuration.selectMode == CalendarConstants.MODE_SINGLE_SELECT &&
-//          dateModel.isSelected) {
-//        calendarProvider.lastClickItemState = this;
-//      }
-//    });
+    // 先注释掉这段代码
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      if (configuration.selectMode == CalendarConstants.MODE_SINGLE_SELECT &&
+          dateModel.isSelected) {
+        calendarProvider.lastClickItemState = this;
+      }
+    });
   }
 
   /**
